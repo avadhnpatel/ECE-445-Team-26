@@ -24,6 +24,7 @@
 // #include <HTTPClient.h>
 // #include <ESP_Mail_Client.h>
 #include <arduino_homekit_server.h>
+#include "twilio.hpp"
 #include "wifi_info.h"
 #include <Servo.h>
 #define DOOR_SENSOR_PIN  19  // ESP32 pin GIOP19 connected to door sensor's pin
@@ -36,6 +37,23 @@
 // #define sender_password "msisnbmofbyuboce"
 // #define Recipient_email "9085009632@txt.att.net"
 // SMTPSession smtp;
+
+// Values from Twilio (find them on the dashboard)
+static const char *account_sid = "AC79f5c4e075b511c9db23ae9ea3881384";
+static const char *auth_token = "58f117518b242f6d85f929c1d9ccfc0a";
+// Phone number should start with "+<countrycode>"
+static const char *from_number = "+18449941245";
+
+// You choose!
+// Phone number should start with "+<countrycode>"
+static const char *to_number = "+13312296253";
+static const char *setup_message = "Setup Message from ESP32";
+static const char *door_open_message = "Your mailbox has been opened";
+static const char *door_closed_message = "Your mailbox has been closed";
+static const char *mail_message = "You have mail!";
+
+
+Twilio *twilio;
 Servo servoMotor;
 int doorState;
 int prevDoorState = 0;
@@ -51,7 +69,7 @@ extern "C" homekit_characteristic_t cha_switch_on;
 
 void unlockDoor() {
   // rotates from 0 degrees to 180 degrees
-  for (int pos = 1; pos <= 90; pos += 1) {
+  for (int pos = 10; pos <= 90; pos += 1) {
     // in steps of 1 degree
     servoMotor.write(pos);
     delay(15); // waits 15ms to reach the position
@@ -60,7 +78,7 @@ void unlockDoor() {
 
 void lockDoor() {
   // rotates from 0 degrees to 180 degrees
-  for (int pos = 90; pos >= 1; pos -= 1) {
+  for (int pos = 90; pos >= 10; pos -= 1) {
     // in steps of 1 degree
     servoMotor.write(pos);
     delay(15); // waits 15ms to reach the position
@@ -78,6 +96,15 @@ void setup() {
   servoMotor.write(90);
   // Blynk.begin(auth, ssid, password);
 	wifi_connect(); // in wifi_info.h
+  twilio = new Twilio(account_sid, auth_token);
+  delay(1000);
+  String response;
+  bool success = twilio->send_message(to_number, from_number, setup_message, response);
+  if (success) {
+    Serial.println("Setup!");
+  } else {
+    Serial.println(response);
+  }
   // smtp.debug(1);  
   // ESP_Mail_Session session;
   // session.server.host_name = SMTP_server ;
@@ -116,6 +143,15 @@ void loop() {
   doorState = digitalRead(DOOR_SENSOR_PIN); // read state
 
   if (doorState == HIGH) {
+    if (prevDoorState == 0){
+      String responseDoorOpen;
+      bool successDoorOpened = twilio->send_message(to_number, from_number, door_open_message, responseDoorOpen);
+      if (successDoorOpened) {
+        Serial.println("Setup!");
+      } else {
+        Serial.println(responseDoorOpen);
+      }
+    }
     prevDoorState = 1;
     // Serial.println("The door is open");
   } else {
@@ -141,8 +177,22 @@ void loop() {
               bool on = true;
               cha_switch_on.value.bool_value = on;
               homekit_characteristic_notify(&cha_switch_on, cha_switch_on.value);
+              
               delay(3000); // waits 15ms to reach the position
-              // unlockDoor();
+              String responseMail;
+              bool successDoorClosed = twilio->send_message(to_number, from_number, mail_message, responseMail);
+              if (successDoorClosed) {
+                Serial.println("Setup!");
+              } else {
+                Serial.println(responseMail);
+              }
+        }
+        String responseDoorClosed;
+        bool successDoorClosed = twilio->send_message(to_number, from_number, door_closed_message, responseDoorClosed);
+        if (successDoorClosed) {
+          Serial.println("Setup!");
+        } else {
+          Serial.println(responseDoorClosed);
         }
     }
     prevDoorState = 0;
