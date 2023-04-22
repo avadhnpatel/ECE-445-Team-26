@@ -14,6 +14,7 @@ void onScheduleChange();
 
 String door_open_status;
 String door_status;
+String mail_status;
 CloudSwitch lock_door;
 CloudSchedule schedule;
 bool schedule_active;
@@ -24,6 +25,7 @@ void initProperties(){
   ArduinoCloud.setSecretDeviceKey(DEVICE_KEY);
   ArduinoCloud.addProperty(door_open_status, READ, ON_CHANGE, NULL);
   ArduinoCloud.addProperty(door_status, READ, ON_CHANGE, NULL);
+  ArduinoCloud.addProperty(mail_status, READ, ON_CHANGE, NULL);
   ArduinoCloud.addProperty(lock_door, READWRITE, ON_CHANGE, onLockDoorChange);
   ArduinoCloud.addProperty(schedule, READWRITE, ON_CHANGE, onScheduleChange);
   ArduinoCloud.addProperty(schedule_active, READ, ON_CHANGE, NULL);

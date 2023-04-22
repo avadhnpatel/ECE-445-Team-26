@@ -8,6 +8,7 @@
 
   String door_open_status;
   String door_status;
+  String mail_status;
   CloudSwitch lock_door;
   CloudSchedule schedule;
   bool schedule_active;
@@ -35,6 +36,8 @@ bool wasScheduleActive = false;
 int prevDoorState = 0;
 bool manual_lock = false;
 float duration_us, distance_cm;
+bool is_there_mail;
+bool mail_check_open;
 
 void setup() {
   // Initialize serial and wait for port to open:
@@ -55,7 +58,14 @@ void setup() {
   lock_door = 0;
   door_status = "Mailbox is Unlocked";
   door_open_status = "Door is closed";
-
+  is_there_mail = checkMail();
+  if(is_there_mail == true){
+    mail_status = "You have mail";
+  }
+  else{
+    mail_status = "You don't have mail";
+  }
+  
   // Connect to Arduino IoT Cloud
   ArduinoCloud.begin(ArduinoIoTPreferredConnection);
   
@@ -84,8 +94,9 @@ void loop() {
   }
   else if (!schedule.isActive() && wasScheduleActive == true){
     //lock motor
-    servoMotor.write(LOCK_POS);
+    // Serial.println("mailbox locked by scheduler");
     sendMessage("Mailbox%20was%20Locked%20By%20Scheduler");
+    servoMotor.write(90);
     lock_door = 1;
     manual_lock = true;
     door_status = "Mailbox is Locked";
@@ -103,6 +114,12 @@ void loop() {
         sendMessage("Mailbox%20Door%20Opened");
         Serial.println("door open");
       }
+      mail_check_open = checkMail();
+      if (mail_check_open == false && is_there_mail == true){
+        is_there_mail = false;
+        mail_status = "Mail has been taken out of the mailbox";
+        sendMessage("Mail%20Was%20Taken%20Out%20Of%20Mailbox");
+      }
       prevDoorState = 1;
       // Serial.println("The door is open");
     } else {
@@ -125,7 +142,6 @@ void loop() {
           Serial.print(distance_cm);
           Serial.println(" cm");
           if (distance_cm < 17) {
-            delay(5000);
             doorState = digitalRead(DOOR_SENSOR_PIN); // read state
             while(doorState == HIGH){
               doorState = digitalRead(DOOR_SENSOR_PIN); // read state
@@ -136,6 +152,17 @@ void loop() {
             doorState = digitalRead(DOOR_SENSOR_PIN); // read state
             sendMessage("You%20Got%20Mail");
             Serial.println("You Got Mail");
+            is_there_mail = true;
+            mail_status = "You have mail";
+          }
+          else if (is_there_mail == true){
+            is_there_mail = false;
+            mail_status = "Mail has been taken out of the mailbox";
+            sendMessage("Mail%20Was%20Taken%20Out%20Of%20Mailbox");
+          }
+          else{
+            is_there_mail = false;
+            mail_status = "You do not have mail";
           }
           sendMessage("Mailbox%20Door%20Closed");
           Serial.println("The door is closed");
@@ -153,6 +180,12 @@ void loop() {
         sendMessage("Mailbox%20Door%20Opened");
         Serial.println("door open");
       }
+      mail_check_open = checkMail();
+      if (mail_check_open == false && is_there_mail == true){
+        is_there_mail = false;
+        mail_status = "Mail has been taken out of the mailbox";
+        sendMessage("Mail%20Was%20Taken%20Out%20Of%20Mailbox");
+      }
       prevDoorState = 1;
       // Serial.println("The door is open");
     } else {
@@ -186,10 +219,19 @@ void loop() {
             doorState = digitalRead(DOOR_SENSOR_PIN); // read state
             sendMessage("You%20Got%20Mail");
             Serial.println("You Got Mail");
+            is_there_mail = true;
+            mail_status = "You have mail";
             lockDoor();
           }
+          else if (is_there_mail == true){
+            is_there_mail = false;
+            mail_status = "Mail has been taken out of the mailbox";
+            sendMessage("Mail%20Was%20Taken%20Out%20Of%20Mailbox");
+          }          
           else{
             sendMessage("Mailbox%20Door%20Closed");
+            is_there_mail = false;
+            mail_status = "You do not have mail";
             Serial.println("The door is closed");
           }
       }
@@ -246,6 +288,28 @@ void sendMessage(String message){
   http.begin("https://maker.ifttt.com/trigger/door/with/key/i3aPR2ByKa88PNsUl4k8Lpf8Q57lfJGn4m5wlFlwM8k?value1="+message);
   http.GET();
   http.end();
+}
+
+bool checkMail(){
+   // generate 10-microsecond pulse to TRIG pin
+    digitalWrite(TRIG_PIN, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(TRIG_PIN, LOW);
+
+    // measure duration of pulse from ECHO pin
+    duration_us = pulseIn(ECHO_PIN, HIGH);
+
+    // calculate the distance
+    distance_cm = 0.017 * duration_us;
+
+    // print the value to Serial Monitor
+    Serial.print("distance: ");
+    Serial.print(distance_cm);
+    Serial.println(" cm");
+    if (distance_cm < 17) {
+      return true;
+    }
+    return false;
 }
 
 /*
