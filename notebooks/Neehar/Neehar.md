@@ -40,12 +40,18 @@ I have continued following the YouTube tutorial to route the wires on the PCB an
 
 ![](PCB_3DModel.png)
 
-# 4-11-2023 - Parts and PCB Arrive
+# 4-8-2023 - Parts and PCB Arrive
 
 We have received the majority of our parts and our PCB has come as well! Now I will begin soldering the parts onto the PCB as they arrive. The SMD components such as resistors, ESP32, and voltage regulator will be the most difficult. However, I was able to do quite well on the soldering assignment so I hope to be able to solder our PCB well as well. I am hoping the PCB works and I am not required to debug as well as order a new PCB. My plan going forward is to slowly solder the smaller parts first and then the larger components.
 
 ![](unsoldered_pcb.png)
 
+# 4-11-2023 Soldering Problems
 
+We have received all our parts now. Although I was confident with my soldering skills, I only have experience with through-hole soldering. Unfortunately, my uncertainties about surface mount soldering has definitely been true. Soldering the ESP32 has been the most difficult as the pins are very, very close to each other. Additionally the resistors are small similar to the soldering assignment. However, with the solder suction device and various other tools I have been able to solder most of the PCB. We will begin testing after I finish.
   
-  
+# 4-13-2023 Completed PCB!
+
+I have finally completed soldering and the PCB works! We are definitely lucky that the PCB worked on the first try and I was able to track down all the soldering problems. We have tested the PCB with all of our components and it works exactly how the ESP32 development board works. This is perfect! I am so glad the PCB worked on the first try and it looks amazing! We will now complete adding the PCB to the mailbox and connecting the sensors in the mailbox.
+
+![](PCB.png)
