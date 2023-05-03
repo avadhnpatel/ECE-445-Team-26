@@ -24,30 +24,28 @@ I have began planning and designing the schematic for the PCB. I was planning on
 
 Although we are not allowed to use development boards, we have breadboarded and understood all the parts and signals required. Now we must transfer this wiring to the PCB and place the parts inside the mailbox. Using the development board ensures we can easily use the ESP32 when the PCB arrives and we can begin working on the software portions such as the app development.
 
-# 3-28-2023 - PCB Design
+# 3-27-2023 - PCB Schematic
 
-I have been designing the PCB the past week and believe I have almost completed the schematic using the YouTube video below. It has not been too complicated as we are simply added a couple female headers to the development board. Here is the completed schematic:
+I have been designing the PCB the past week and believe I have almost completed the schematic using the YouTube video below. It has not been too complicated as we are simply added a couple female headers to the development board. I have shifted gears from KiCad to to the online EasyEDA editor as that is what the tutorial uses. Here is the completed schematic:
 
 [PCB Design Resource](https://www.youtube.com/watch?v=S_p0YV-JlfU)
+
 ![](PCB_Schematic.png)
 
-# 2021-03-01 - Parts update
+# 3-28-2023 - PCB Design
 
-From further discussions about the issue of communicating to both VESCs individually or to a ‘master’ VESC to both, we have decided to go with a pair of single VESCs. For example, we could attach a CANBUS cable between the pair of VESCs in order to allow them to communicate with each other, or simply split two PPM signals to pass throttle information individually, among various other choices. In other words, the VESCs can work in tandem with one another or can be independent from each other.
+I have continued following the YouTube tutorial to route the wires on the PCB and complete the design. I have added 2 4-pin female headers for the ultrasonic sensors, a 2-pin female header for the magnetic contact switch, and a 3-pin female header for the servo motor to the original ESP32 development board design. I had to be strategic in the placement of the headers to ensure they are easily routable and accessible. I will be attending a design review and meeting with our mentor to ensure our PCB design will not have any problems. Then I will run the audit on the Gerber file. We have began ordering parts for the PCB as well.
 
-I have assembled a significant portion of the board at this point, as seen here in this picture below:
+![](PCB_Design.png)
 
-![](parts_update.png)
+![](PCB_3DModel.png)
 
-Some issues:
+# 4-11-2023 - Parts and PCB Arrive
 
-- The motor pulley is scraping on the motor mount. This is an issue of tolerances, as the
-motor mount I am using is 6mm wide and the Motor shaft has a tolerance of 6.2mm +-
-0.5mm. In theory, we should have 0.2mm of space, but the margin of error was not in our
-favor.
-  ![](motor_pulley_scraping.png)
-- The threads on the ends of the trucks are not deep enough. We need bearing spacers to
-push the wheel out.
-  ![](bearing_spacer.png)
+We have received the majority of our parts and our PCB has come as well! Now I will begin soldering the parts onto the PCB as they arrive. The SMD components such as resistors, ESP32, and voltage regulator will be the most difficult. However, I was able to do quite well on the soldering assignment so I hope to be able to solder our PCB well as well. I am hoping the PCB works and I am not required to debug as well as order a new PCB. My plan going forward is to slowly solder the smaller parts first and then the larger components.
+
+![](unsoldered_pcb.png)
+
+
   
   
