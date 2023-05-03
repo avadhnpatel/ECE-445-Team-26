@@ -15,6 +15,8 @@ the panels.
 Completed the door and hinge assembly which took much longer than anticipated. However, this finishes
 the mailbox design and will begin printing after spring break as it will take several days to print.
 
+![](https://github.com/avadhnpatel/ECE-445-Team-26/blob/main/notebooks/Roshun/Screenshot%202023-05-03%20at%205.47.43%20PM.png)
+
 
 # 2023-03-21 - Unit test all sensors and write barebones auto locking code
 
