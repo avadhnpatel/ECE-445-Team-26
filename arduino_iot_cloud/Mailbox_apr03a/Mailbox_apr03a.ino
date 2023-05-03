@@ -9,6 +9,8 @@
   String door_open_status;
   String door_status;
   String mail_status;
+  float ultrasonic_value;
+  CloudSwitch check_ultrasonic;
   CloudSwitch lock_door;
   CloudSchedule schedule;
   bool schedule_active;
@@ -136,6 +138,7 @@ void loop() {
   
           // calculate the distance
           distance_cm = 0.017 * duration_us;
+          ultrasonic_value = distance_cm;
   
           // print the value to Serial Monitor
           Serial.print("distance: ");
@@ -202,13 +205,13 @@ void loop() {
   
           // calculate the distance
           distance_cm = 0.017 * duration_us;
-  
+          ultrasonic_value = distance_cm;
           // print the value to Serial Monitor
           Serial.print("distance: ");
           Serial.print(distance_cm);
           Serial.println(" cm");
           if (distance_cm < 17) {
-            delay(5000);
+            delay(9000);
             doorState = digitalRead(DOOR_SENSOR_PIN); // read state
             while(doorState == HIGH){
               doorState = digitalRead(DOOR_SENSOR_PIN); // read state
@@ -217,11 +220,34 @@ void loop() {
               }
             }
             doorState = digitalRead(DOOR_SENSOR_PIN); // read state
-            sendMessage("You%20Got%20Mail");
-            Serial.println("You Got Mail");
-            is_there_mail = true;
-            mail_status = "You have mail";
-            lockDoor();
+            // generate 10-microsecond pulse to TRIG pin
+            digitalWrite(TRIG_PIN, HIGH);
+            delayMicroseconds(10);
+            digitalWrite(TRIG_PIN, LOW);
+
+            // measure duration of pulse from ECHO pin
+            duration_us = pulseIn(ECHO_PIN, HIGH);
+
+            // calculate the distance
+            distance_cm = 0.017 * duration_us;
+            ultrasonic_value = distance_cm;
+            // print the value to Serial Monitor
+            Serial.print("distance: ");
+            Serial.print(distance_cm);
+            Serial.println(" cm");
+            if (distance_cm < 17) {
+              sendMessage("You%20Got%20Mail");
+              Serial.println("You Got Mail");
+              is_there_mail = true;
+              mail_status = "You have mail";
+              lockDoor();
+            }
+            else{
+              is_there_mail = false;
+              mail_status = "Mail was taken out of mailbox";
+              sendMessage("Mail%20Was%20Taken%20Out%20Of%20Mailbox");
+              Serial.println("The door is closed");
+            }
           }
           else if (is_there_mail == true){
             is_there_mail = false;
@@ -291,7 +317,7 @@ void sendMessage(String message){
 }
 
 bool checkMail(){
-   // generate 10-microsecond pulse to TRIG pin
+    // generate 10-microsecond pulse to TRIG pin
     digitalWrite(TRIG_PIN, HIGH);
     delayMicroseconds(10);
     digitalWrite(TRIG_PIN, LOW);
@@ -301,11 +327,11 @@ bool checkMail(){
 
     // calculate the distance
     distance_cm = 0.017 * duration_us;
-
+    ultrasonic_value = distance_cm;
     // print the value to Serial Monitor
-    Serial.print("distance: ");
-    Serial.print(distance_cm);
-    Serial.println(" cm");
+    // Serial.print("distance: ");
+    // Serial.print(distance_cm);
+    // Serial.println(" cm");
     if (distance_cm < 17) {
       return true;
     }
@@ -341,4 +367,29 @@ void onLockDoorChange()  {
 */
 void onScheduleChange()  {
   // Add your code here to act upon Schedule change
+}
+
+/*
+  Since CheckUltrasonic is READ_WRITE variable, onCheckUltrasonicChange() is
+  executed every time a new value is received from IoT Cloud.
+*/
+void onCheckUltrasonicChange()  {
+  // Add your code here to act upon CheckUltrasonic change
+  // generate 10-microsecond pulse to TRIG pin
+  digitalWrite(TRIG_PIN, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(TRIG_PIN, LOW);
+
+  // measure duration of pulse from ECHO pin
+  duration_us = pulseIn(ECHO_PIN, HIGH);
+
+  // calculate the distance
+  distance_cm = 0.017 * duration_us;
+
+  // print the value to Serial Monitor
+  // Serial.print("distance: ");
+  // Serial.print(distance_cm);
+  // Serial.println(" cm");
+  ultrasonic_value = distance_cm;
+  
 }
