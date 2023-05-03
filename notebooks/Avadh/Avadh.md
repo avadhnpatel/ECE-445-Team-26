@@ -23,6 +23,7 @@ I have found an alternative to AWS and Apple Homekit called Arduino IOT Cloud. I
 # 2023-04-06 - Continued with Arduino IOT Cloud
 
 We have decided that we are going to do everything through Arduino IOT Cloud. I have added status boxes that show the status of mail, the lock, and the door on the app. There is also a switch that has been added that controls the mailbox locking mechanism. All of these statuses update within a second of any action being made on the mailbox.
+
 ![](https://github.com/avadhnpatel/ECE-445-Team-26/blob/main/notebooks/Avadh/Screenshot%202023-05-03%20at%205.10.12%20PM.png)
 
 # 2023-04-06 - Added Scheduling to Arduino IOT Cloud
