@@ -26,7 +26,7 @@ We have decided that we are going to do everything through Arduino IOT Cloud. I 
 
 # 2023-04-06 - Added Scheduling to Arduino IOT Cloud
 
-I have found a scheduler component that can be added to our dashboard. The schedule can be set for a speicifc date and time. It will be set for a duration that is specified by the user. We know when the schedule is active in the code so we will leave the mailbox unlocked while it is active. I have also added a status for the scheduler that will show whether or not the schedule is active.
+I have found a scheduler component that can be added to our dashboard. The schedule can be set for a specific date and time. It will be set for a duration that is specified by the user. We know when the schedule is active in the code so we will leave the mailbox unlocked while it is active. I have also added a status for the scheduler that will show whether or not the schedule is active.
 
 # 2023-04-08 - IFTTT Mobile Notifications
 
