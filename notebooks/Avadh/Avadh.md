@@ -11,7 +11,7 @@ The ESP32 Development board has been delivered. We have tested it on our breadbo
 # 2023-03-21 - Unit Testing
 
 Roshun and I have unit tested our motor/sensors on the breadboard. For the Servo Motor we used the following diagram to connect it to the development board. 
-[link](https://esp32io.com/images/tutorial/esp32-servo-motor-wiring-diagram.jpg)
+![](https://esp32io.com/images/tutorial/esp32-servo-motor-wiring-diagram.jpg)
 
 
 Some issues:
