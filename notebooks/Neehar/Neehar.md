@@ -1,6 +1,6 @@
 # Neehar Worklog
 
-[[_TOC_]]
+
 
 # 2-8-2023 - Initial CAD & Soldering Assignment
 
@@ -12,6 +12,7 @@ My group has placed me in charge of designing and soldering the PCB. I am a litt
 We have began ordering parts now and understanding which signals will be required for the parts. We have received an ESP32 development board and will begin breadboarding and slowly integrating the ultrasonic sensors, magnetic contact switch, and servo motor. We have found the link below and hope to utilize this resource as it gives examples using all these parts.
 
 [ESP32 Resource](https://esp32io.com/)
+![](esp32.png)
 
 
 # 3-8-2023 - No Development Boards Allowed
@@ -19,20 +20,16 @@ We have began ordering parts now and understanding which signals will be require
 I have began planning and designing the schematic for the PCB. I was planning on including female headers to connect all the sensors and female headers to connect the ESP32 development board. However, we just found out we cannot use development boards which will significantly complicate my design of the PCB. The past couple weeks we have been planning on using a development board and this will be a major setback with the first round PCBway orders being today. We will have to figure out another approach by the next round.
 
 
-# 2021-02-18 - Battery Update
+# 3-21-2023 - Part Integration
 
-Received the pair of 6s4p batteries, along with battery building supplies such as a Smart BMS, nickel strips, fishpaper, 10 gauge wire, and more. Upon closer inspection, splitting the 6s4p pack into a 12s2p pack is difficult, as there is no leverage to remove the existing H-shaped nickel strips.
+Although we are not allowed to use development boards, we have breadboarded and understood all the parts and signals required. Now we must transfer this wiring to the PCB and place the parts inside the mailbox. Using the development board ensures we can easily use the ESP32 when the PCB arrives and we can begin working on the software portions such as the app development.
 
-The pair of 6s4p packs take up a lot less space than I expected. It would be easier to make a 12s4p pack out of them instead, which will provide us the same power as I required from earlier at nearly 500 Whr. Additionally, I have gotten in contact with a coworker who has a battery spot welder I can use.
+# 3-28-2023 - PCB Design
 
-Once I have planned out the build and assembled the materials, we should be good to go to complete the battery.
+I have been designing the PCB the past week and believe I have almost completed the schematic using the YouTube video below. It has not been too complicated as we are simply added a couple female headers to the development board. Here is the completed schematic:
 
-# 2021-02-24 - Investigation acquiring RPM data from VESCs
-
-I have done some investigating of the VESC hardware and software and discovered that you can query them for RPM telemetry data. This removes the need for us to develop RPM sensing
-around the motorized wheels.
-
-To accomplish this however, we may need to talk to each VESC individually. Having a dual VESC is convenient, but this may interfere with our ability to query data from them properly. Some dual VESCs have dual MCUs, other more recent designs have single MCUs as shown earlier in this journal.
+[PCB Design Resource](https://www.youtube.com/watch?v=S_p0YV-JlfU)
+![](PCB_Schematic.png)
 
 # 2021-03-01 - Parts update
 
