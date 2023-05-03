@@ -10,8 +10,8 @@ The ESP32 Development board has been delivered. We have tested it on our breadbo
 
 # 2023-03-21 - Unit Testing
 
-Roshun and I have unit tested our motor/sensors on the breadboard. For the Servo Motor we used the following diagram to connect it to the development board. 
-![](https://esp32io.com/images/tutorial/esp32-servo-motor-wiring-diagram.jpg)
+Roshun and I have unit tested our motor/sensors on the breadboard. For the Servo Motor we used the following diagram to connect it to the development board: ![](https://esp32io.com/images/tutorial/esp32-servo-motor-wiring-diagram.jpg)
+For the Magnetic Contact Sensor we used the following diagram to connect it to the development board: ![](https://esp32io.com/images/tutorial/esp32-door-sensor-wiring-diagram.jpg)
 
 
 Some issues:
@@ -20,9 +20,9 @@ Some issues:
 motor mount I am using is 6mm wide and the Motor shaft has a tolerance of 6.2mm +-
 0.5mm. In theory, we should have 0.2mm of space, but the margin of error was not in our
 favor.
-  ![](motor_pulley_scraping.png)
+
 - The threads on the ends of the trucks are not deep enough. We need bearing spacers to
 push the wheel out.
-  ![](bearing_spacer.png)
+
   
   
