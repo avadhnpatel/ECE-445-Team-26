@@ -9,18 +9,14 @@ const char SSID[]               = "mailboxwifi";    // Network SSID (name)
 const char PASS[]               = "password";    // Network password (use for WPA, or use as key for WEP)
 const char DEVICE_KEY[]  = "UVPK9JTUXX7OZIYOPZOO";    // Secret device password
 
-void onCheckUltrasonicChange();
 void onLockDoorChange();
 void onScheduleChange();
 
 String door_open_status;
 String door_status;
 String mail_status;
-float ultrasonic_value;
-CloudSwitch check_ultrasonic;
 CloudSwitch lock_door;
 CloudSchedule schedule;
-bool schedule_active;
 
 void initProperties(){
 
@@ -29,11 +25,8 @@ void initProperties(){
   ArduinoCloud.addProperty(door_open_status, READ, ON_CHANGE, NULL);
   ArduinoCloud.addProperty(door_status, READ, ON_CHANGE, NULL);
   ArduinoCloud.addProperty(mail_status, READ, ON_CHANGE, NULL);
-  ArduinoCloud.addProperty(ultrasonic_value, READ, ON_CHANGE, NULL);
-  ArduinoCloud.addProperty(check_ultrasonic, READWRITE, ON_CHANGE, onCheckUltrasonicChange);
   ArduinoCloud.addProperty(lock_door, READWRITE, ON_CHANGE, onLockDoorChange);
   ArduinoCloud.addProperty(schedule, READWRITE, ON_CHANGE, onScheduleChange);
-  ArduinoCloud.addProperty(schedule_active, READ, ON_CHANGE, NULL);
 
 }
 
