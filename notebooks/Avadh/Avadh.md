@@ -1,6 +1,4 @@
-# Alex Worklog
-
-[[_TOC_]]
+# Avadh Worklog
 
 # 2021-02-05 - Discussion with Professor Schuh
 
@@ -13,7 +11,8 @@ Here are some examples:
 
 ![](esc1.png)
 
-[link](https://flipsky.net/collections/electronic-products/products/dual-fsesc6-6-based-upon-vesc6-with-aluminum-heatsink)
+[[link](https://flipsky.net/collections/electronic-products/products/dual-fsesc6-6-based-upon-ve![Uploading image.png…]()
+sc6-with-aluminum-heatsink)](https://gitlab.engr.illinois.edu/ece445/example-project/-/raw/master/notebooks/alex/esc1.png)
 
 This one has dual MCUs, with a physical switch to include or disclude the CAN connection
 between both of the VESCs.
