@@ -91,6 +91,8 @@ glued on the servo motor and then aligned the metal piece on the door which the 
 After ensuring that the mailbox was functioning as intended, the two halves of the mailbox body were 
 glued together. This was left to dry for several hours to be safe.
 
+![](https://github.com/avadhnpatel/ECE-445-Team-26/blob/main/notebooks/Roshun/Screenshot%202023-05-03%20at%205.43.17%20PM.png)
+
 # 2023-04-13 - Routing wires and completing the project.
 
 In order for the mailbox to look clean and properly assembled, the wires needed to be taped down and 
