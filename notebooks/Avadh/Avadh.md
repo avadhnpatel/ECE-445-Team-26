@@ -9,10 +9,9 @@ Professor Schuh gave us the idea to use piezo resistors or Velostat to perform t
 Currently, I am looking at Dual VESC options that can simplify our design, minimize space.
 Here are some examples:
 
-![](esc1.png)
+![](https://esp32io.com/images/tutorial/esp32-servo-motor-wiring-diagram.jpg)
 
-[[link](https://flipsky.net/collections/electronic-products/products/dual-fsesc6-6-based-upon-ve![Uploading image.png…]()
-sc6-with-aluminum-heatsink)](https://gitlab.engr.illinois.edu/ece445/example-project/-/raw/master/notebooks/alex/esc1.png)
+[[link](https://gitlab.engr.illinois.edu/ece445/example-project/-/raw/master/notebooks/alex/esc1.png)
 
 This one has dual MCUs, with a physical switch to include or disclude the CAN connection
 between both of the VESCs.
