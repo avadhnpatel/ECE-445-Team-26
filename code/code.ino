@@ -9,7 +9,6 @@
   String door_open_status;
   String door_status;
   String mail_status;
-  float ultrasonic_value;
   CloudSwitch lock_door;
   CloudSchedule schedule;
 
@@ -135,7 +134,6 @@ void loop() {
   
           // calculate the distance
           distance_cm = 0.017 * duration_us;
-          ultrasonic_value = distance_cm;
   
           // print the value to Serial Monitor
           Serial.print("distance: ");
@@ -202,7 +200,6 @@ void loop() {
   
           // calculate the distance
           distance_cm = 0.017 * duration_us;
-          ultrasonic_value = distance_cm;
           // print the value to Serial Monitor
           Serial.print("distance: ");
           Serial.print(distance_cm);
@@ -227,7 +224,6 @@ void loop() {
 
             // calculate the distance
             distance_cm = 0.017 * duration_us;
-            ultrasonic_value = distance_cm;
             // print the value to Serial Monitor
             Serial.print("distance: ");
             Serial.print(distance_cm);
@@ -324,7 +320,6 @@ bool checkMail(){
 
     // calculate the distance
     distance_cm = 0.017 * duration_us;
-    ultrasonic_value = distance_cm;
     // print the value to Serial Monitor
     // Serial.print("distance: ");
     // Serial.print(distance_cm);
@@ -333,15 +328,6 @@ bool checkMail(){
       return true;
     }
     return false;
-}
-
-/*
-  Since DoorStatus is READ_WRITE variable, onDoorStatusChange() is
-  executed every time a new value is received from IoT Cloud.
-*/
-void onDoorStatusChange()  {
-  // Add your code here to act upon DoorStatus change
-  
 }
 
 /*
@@ -358,35 +344,3 @@ void onLockDoorChange()  {
   }
 }
 
-/*
-  Since Schedule is READ_WRITE variable, onScheduleChange() is
-  executed every time a new value is received from IoT Cloud.
-*/
-void onScheduleChange()  {
-  // Add your code here to act upon Schedule change
-}
-
-/*
-  Since CheckUltrasonic is READ_WRITE variable, onCheckUltrasonicChange() is
-  executed every time a new value is received from IoT Cloud.
-*/
-void onCheckUltrasonicChange()  {
-  // Add your code here to act upon CheckUltrasonic change
-  // generate 10-microsecond pulse to TRIG pin
-  digitalWrite(TRIG_PIN, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(TRIG_PIN, LOW);
-
-  // measure duration of pulse from ECHO pin
-  duration_us = pulseIn(ECHO_PIN, HIGH);
-
-  // calculate the distance
-  distance_cm = 0.017 * duration_us;
-
-  // print the value to Serial Monitor
-  // Serial.print("distance: ");
-  // Serial.print(distance_cm);
-  // Serial.println(" cm");
-  ultrasonic_value = distance_cm;
-  
-}
