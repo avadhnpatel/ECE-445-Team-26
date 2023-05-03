@@ -1,7 +1,5 @@
 # Roshun Worklog
 
-[[_TOC_]]
-
 # 2023-02-28 - Begin 3D printing design
 
 Today, we went to the BIF to talk with the Illinois Makerlab about designing and printing our mailbox. The
