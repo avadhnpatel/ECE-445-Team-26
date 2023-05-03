@@ -24,11 +24,11 @@ I have found an alternative to AWS and Apple Homekit called Arduino IOT Cloud. I
 
 We have decided that we are going to do everything through Arduino IOT Cloud. I have added status boxes that show the status of mail, the lock, and the door on the app. There is also a switch that has been added that controls the mailbox locking mechanism. All of these statuses update within a second of any action being made on the mailbox.
 
-# 2023-04-06 - Added Scheduling Arduino IOT Cloud
+# 2023-04-06 - Added Scheduling to Arduino IOT Cloud
 
 I have found a scheduler component that can be added to our dashboard. The schedule can be set for a speicifc date and time. It will be set for a duration that is specified by the user. We know when the schedule is active in the code so we will leave the mailbox unlocked while it is active. I have also added a status for the scheduler that will show whether or not the schedule is active.
 
-# 2023-04-08 - IFTTT Notifications
+# 2023-04-08 - IFTTT Mobile Notifications
 
 I have configured IFTTT (which is a service that allows push notifications) with the ESP32 Development board and now it sends notifications to any phone that has IFTTT downloaded with my credentials logged in. I send notifications any time the door is open/closed, mail is put in the mailbox, the scheduler turns on/off, or if the mailbox is locked. 
 
