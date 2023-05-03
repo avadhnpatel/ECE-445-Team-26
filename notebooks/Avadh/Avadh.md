@@ -10,9 +10,15 @@ The ESP32 Development board has been delivered. We have tested it on our breadbo
 
 # 2023-03-21 - Unit Testing
 
-Roshun and I have unit tested our motor/sensors on the breadboard. For the Servo Motor we used the following diagram to connect it to the development board: ![](https://esp32io.com/images/tutorial/esp32-servo-motor-wiring-diagram.jpg)
-For the Magnetic Contact Sensor we used the following diagram to connect it to the development board: ![](https://esp32io.com/images/tutorial/esp32-door-sensor-wiring-diagram.jpg)
-For the Ultrasonic Sensors we used the following diagram to connect them to the development board: ![](https://esp32io.com/images/tutorial/esp32-ultrasonic-sensor-wiring-diagram.jpg)
+Roshun and I have unit tested our motor/sensors on the breadboard. For the Servo Motor we used the following diagram to connect it to the development board: 
+
+![](https://esp32io.com/images/tutorial/esp32-servo-motor-wiring-diagram.jpg)
+For the Magnetic Contact Sensor we used the following diagram to connect it to the development board: 
+
+![](https://esp32io.com/images/tutorial/esp32-door-sensor-wiring-diagram.jpg)
+For the Ultrasonic Sensors we used the following diagram to connect them to the development board: 
+
+![](https://esp32io.com/images/tutorial/esp32-ultrasonic-sensor-wiring-diagram.jpg)
 
 We connected all three components together and wrote the logic in order to move the servo (lock the mailbox) if the contact sensors go from being open to closed and the ultrasonic distance is less than 17 cm (there is mail in the mailbox).
 
@@ -29,6 +35,7 @@ We have decided that we are going to do everything through Arduino IOT Cloud. I 
 # 2023-04-06 - Added Scheduling to Arduino IOT Cloud
 
 I have found a scheduler component that can be added to our dashboard. The schedule can be set for a specific date and time. It will be set for a duration that is specified by the user. We know when the schedule is active in the code so we will leave the mailbox unlocked while it is active. I have also added a status for the scheduler that will show whether or not the schedule is active.
+
 ![](https://github.com/avadhnpatel/ECE-445-Team-26/blob/main/notebooks/Avadh/Screenshot%202023-05-03%20at%205.10.30%20PM.png)
 
 # 2023-04-08 - IFTTT Mobile Notifications
