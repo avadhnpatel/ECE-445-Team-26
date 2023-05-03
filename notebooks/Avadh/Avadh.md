@@ -10,7 +10,7 @@ The ESP32 Development board has been delivered. We have tested it on our breadbo
 
 # 2023-03-21 - Unit Testing
 
-Roshun and I have unit tested our motor/sensors on the breadboard. For the Servo Motor we used the following diagram to connect it to the development board: 
+Roshun and I have unit tested our motor/sensors on the breadboard. For the Servo Motor we had to import a library called Servo.h and we used the following diagram to connect it to the development board: 
 
 ![](https://esp32io.com/images/tutorial/esp32-servo-motor-wiring-diagram.jpg)
 For the Magnetic Contact Sensor we used the following diagram to connect it to the development board: 
@@ -19,6 +19,10 @@ For the Magnetic Contact Sensor we used the following diagram to connect it to t
 For the Ultrasonic Sensors we used the following diagram to connect them to the development board: 
 
 ![](https://esp32io.com/images/tutorial/esp32-ultrasonic-sensor-wiring-diagram.jpg)
+
+We also had to use the following equation to calculate the distance an object is from an ultrasonic sensor:
+
+![](https://www.rfwireless-world.com/images/Ultrasonic-sensor-distance-calculation.jpg)
 
 We connected all three components together and wrote the logic in order to move the servo (lock the mailbox) if the contact sensors go from being open to closed and the ultrasonic distance is less than 17 cm (there is mail in the mailbox).
 
