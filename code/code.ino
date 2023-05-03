@@ -10,10 +10,8 @@
   String door_status;
   String mail_status;
   float ultrasonic_value;
-  CloudSwitch check_ultrasonic;
   CloudSwitch lock_door;
   CloudSchedule schedule;
-  bool schedule_active;
 
   Variables which are marked as READ/WRITE in the Cloud Thing will also have functions
   which are called when their values are changed from the Dashboard.
@@ -84,7 +82,6 @@ void setup() {
 
 void loop() {
   ArduinoCloud.update();
-  schedule_active = schedule.isActive();
   if(schedule.isActive() && wasScheduleActive == false){
     //unlock motor
     servoMotor.write(UNLOCK_POS);
