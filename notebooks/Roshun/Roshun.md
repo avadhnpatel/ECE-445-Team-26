@@ -84,7 +84,7 @@ the cutouts in the false floor. This process was not easy and required a ton of 
 However, I was able to finally duck tape down both ultrasonic sensors down in the right spot. I also
 glued on the servo motor and then aligned the metal piece on the door which the lock will slot into.
 
-![](https://github.com/avadhnpatel/ECE-445-Team-26/blob/main/notebooks/Roshun/IMG_3947.HEIC)
+![]([https://github.com/avadhnpatel/ECE-445-Team-26/blob/main/notebooks/Roshun/IMG_3947.HEIC](https://github.com/avadhnpatel/ECE-445-Team-26/blob/main/notebooks/Roshun/Screenshot%202023-05-03%20at%205.39.06%20PM.png))
 
 # 2023-04-12 - Put together whole mailbox
 
