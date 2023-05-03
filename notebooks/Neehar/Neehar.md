@@ -54,4 +54,4 @@ We have received all our parts now. Although I was confident with my soldering s
 
 I have finally completed soldering and the PCB works! We are definitely lucky that the PCB worked on the first try and I was able to track down all the soldering problems. We have tested the PCB with all of our components and it works exactly how the ESP32 development board works. This is perfect! I am so glad the PCB worked on the first try and it looks amazing! We will now complete adding the PCB to the mailbox and connecting the sensors in the mailbox.
 
-![](PCB.png)
+![](PCB2.png)
