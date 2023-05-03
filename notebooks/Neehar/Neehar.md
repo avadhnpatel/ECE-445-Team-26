@@ -11,7 +11,7 @@ My group has placed me in charge of designing and soldering the PCB. I am a litt
 
 We have began ordering parts now and understanding which signals will be required for the parts. We have received an ESP32 development board and will begin breadboarding and slowly integrating the ultrasonic sensors, magnetic contact switch, and servo motor. We have found the link below and hope to utilize this resource as it gives examples using all these parts.
 
-[link](esp32io.com)
+[ESP32 Resource](esp32io.com)
 
 
 # 3-8-2023 - No Development Boards Allowed
