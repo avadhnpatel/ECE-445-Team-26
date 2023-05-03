@@ -344,3 +344,6 @@ void onLockDoorChange()  {
   }
 }
 
+void onScheduleChange(){
+  
+}
